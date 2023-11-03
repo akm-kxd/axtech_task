@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PokemonService } from './pokemon.service';
+import { PokemonService } from '../services/pokemon.service';
+import { LimitService } from '../services/limit.service';
 import { IPokemon } from './interfaces/Pokemon/Pokemon';
 
 @Component({
@@ -9,13 +10,17 @@ import { IPokemon } from './interfaces/Pokemon/Pokemon';
   styleUrls: ['./pokemons.component.scss'],
 })
 export class PokemonsComponent implements OnInit {
-  constructor(private pokemonService: PokemonService) {}
+  constructor(
+    private pokemonService: PokemonService,
+    private limitService: LimitService
+  ) {}
 
   pokemons: IPokemon[] = [];
   isLoading: boolean = true;
-  limit: number = 6;
+  limit: number;
 
   ngOnInit(): void {
+    this.refreshLimit();
     this.getPokemons();
   }
 
@@ -27,7 +32,12 @@ export class PokemonsComponent implements OnInit {
   }
 
   showMore(): void {
-    this.limit = this.limit + 6;
+    this.limitService.setLimit(this.limit + 6);
+    this.refreshLimit();
     this.getPokemons();
+  }
+
+  refreshLimit(): void {
+    this.limit = this.limitService.getLimit();
   }
 }
