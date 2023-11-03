@@ -1,0 +1,39 @@
+<section class="pokemons">
+  <p *ngIf="isLoading">Loading...</p>
+  <ul class="pokemons__list">
+    <li
+      class="pokemons__item"
+      *ngFor="let pokemon of pokemons | slice : 0 : limit"
+    >
+      <div class="pokemons__top">
+        <div class="pokemons__circle"></div>
+        <div class="pokemons__id">
+          <span>ID: {{ pokemon.id }}</span>
+        </div>
+        <img
+          src="{{ pokemon.sprites.other.dream_world.front_default }}"
+          alt=""
+        />
+        <h3>{{ pokemon.name }}</h3>
+      </div>
+      <div class="pokemons__bottom">
+        <ul class="pokemons__info">
+          <li>
+            <b>{{ pokemon.height }}</b>
+            <span>Height</span>
+          </li>
+          <li>
+            <b>{{ pokemon.base_experience }}</b>
+            <span>Experience</span>
+          </li>
+          <li>
+            <b>{{ pokemon.order }}</b>
+            <span>Order</span>
+          </li>
+        </ul>
+        <a [routerLink]="['', pokemon.id]" class="pokemons__link">Show more</a>
+      </div>
+    </li>
+  </ul>
+  <button class="pokemons__more" (click)="showMore()">Show more</button>
+</section>

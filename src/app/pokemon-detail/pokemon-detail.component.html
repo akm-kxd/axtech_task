@@ -1,0 +1,27 @@
+<section *ngIf="pokemon" class="pokemon">
+  <div class="pokemon__wrapper">
+    <div class="pokemon__left">
+      <img src="{{ pokemon.sprites.other.dream_world.front_default }}" alt="" />
+    </div>
+    <div class="pokemon__right">
+      <ul class="pokemon__info">
+        <li>Id: {{ pokemon.id }}</li>
+        <li>Name: {{ pokemon.name }}</li>
+        <li>Height: {{ pokemon.height }}</li>
+        <li>Weight: {{ pokemon.weight }}</li>
+        <li></li>
+      </ul>
+      <div class="pokemon__stats">
+        <h4>Some Stats:</h4>
+        <ul>
+          <li>hp {{ pokemon.stats[0].base_stat }}</li>
+          <li>attack {{ pokemon.stats[1].base_stat }}</li>
+          <li>defense {{ pokemon.stats[2].base_stat }}</li>
+          <li>special-attack {{ pokemon.stats[3].base_stat }}</li>
+          <li>special-defense {{ pokemon.stats[4].base_stat }}</li>
+          <li>speed {{ pokemon.stats[5].base_stat }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
